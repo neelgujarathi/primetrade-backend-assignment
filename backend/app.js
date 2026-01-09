@@ -11,11 +11,12 @@ const path = require("path"); // ✅ Only one place in entire backend
 
 app.use(
   cors({
-    origin: "https://primetrade-backend-assignment-sjou.onrender.com",
+    origin: "https://primetrade-backend-assignment-sjou.onrender.com", // ✅ your frontend URL
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
 );
+
 
 app.use(express.json());
 
