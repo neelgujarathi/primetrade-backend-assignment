@@ -37,13 +37,15 @@ app.use('/api/v1/tasks', taskRoutes);
 app.use('/api/v1/admin', adminRoutes);
 
 // Serve frontend in production
+const path = require("path");
+
+// Serve frontend in production
 if (process.env.NODE_ENV === "production") {
-  // Point to your React build folder
   app.use(express.static(path.join(__dirname, "client/build")));
 
-  // Catch-all route to serve index.html for React Router
-  app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+  // Catch-all for React routes (excluding /api)
+  app.get(/^\/(?!api).*/, (req, res) => {
+    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
   });
 }
 
