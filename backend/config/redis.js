@@ -1,11 +1,12 @@
-const redis = require("redis");
+let client = null;
 
-const client = redis.createClient({
-  url: "redis://localhost:6379", 
-});
-
-client.on("error", (err) => console.error("Redis Client Error", err));
-
-client.connect();
+if (process.env.NODE_ENV !== "production") {
+  const redis = require("redis");
+  client = redis.createClient({
+    url: "redis://localhost:6379",
+  });
+  client.on("error", (err) => console.error("Redis Client Error", err));
+  client.connect();
+}
 
 module.exports = client;
