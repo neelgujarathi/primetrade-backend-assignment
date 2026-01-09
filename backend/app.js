@@ -10,7 +10,7 @@ const adminRoutes = require('./routes/adminRoutes');
 
 app.use(
   cors({
-    origin: "https://primetrade-backend-assignment-sjou.onrender.com/",
+    origin: "https://primetrade-backend-assignment-sjou.onrender.com",
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
