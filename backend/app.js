@@ -39,15 +39,18 @@ app.use('/api/v1/admin', adminRoutes);
 // Serve frontend in production
 const path = require("path");
 
-// Serve frontend in production
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "client/build")));
+const path = require("path");
 
-  // Catch-all for React routes (excluding /api)
+if (process.env.NODE_ENV === "production") {
+  // Serve static files from React frontend build
+  app.use(express.static(path.join(__dirname, "frontend/build")));
+
+  // Catch-all route for frontend (except API routes)
   app.get(/^\/(?!api).*/, (req, res) => {
-    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+    res.sendFile(path.join(__dirname, "frontend/build", "index.html"));
   });
 }
+
 
 // Error handler
 app.use(errorHandler);
