@@ -1,4 +1,3 @@
-// swagger.js
 import swaggerJSDoc from "swagger-jsdoc";
 import swaggerUi from "swagger-ui-express";
 
@@ -18,8 +17,7 @@ const options = {
       },
     ],
   },
-  // Path to the APIs
-  apis: ["./routes/*.js"], // adjust this path if your routes folder differs
+  apis: ["./routes/*.js"], 
 };
 
 const swaggerSpec = swaggerJSDoc(options);

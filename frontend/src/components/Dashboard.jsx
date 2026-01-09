@@ -5,9 +5,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { useNavigate } from "react-router-dom";
 
 export default function Dashboard() {
-  const [usersData, setUsersData] = useState([]); // admin view
-  const [tasks, setTasks] = useState([]); // normal user
-  const [editingTaskId, setEditingTaskId] = useState(null); // edit mode
+  const [usersData, setUsersData] = useState([]); 
+  const [tasks, setTasks] = useState([]); 
+  const [editingTaskId, setEditingTaskId] = useState(null); 
   const [editForm, setEditForm] = useState({ title: "", description: "" });
   const [newTask, setNewTask] = useState({ title: "", description: "" });
 
@@ -151,7 +151,7 @@ export default function Dashboard() {
           </div>
         ) : (
           <>
-            {/* Add Task Card */}
+            
             <div className="card shadow-sm border-0 p-3 mb-4 w-100">
               <h5 className="mb-3">Add New Task</h5>
               <div className="d-flex flex-column flex-md-row gap-2">
@@ -177,7 +177,7 @@ export default function Dashboard() {
               </div>
             </div>
 
-            {/* User Tasks */}
+            
             <div className="row">
               {tasks.length === 0 && <p className="text-center">No tasks added yet.</p>}
               {tasks.map((t) => (

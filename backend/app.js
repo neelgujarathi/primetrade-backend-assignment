@@ -10,24 +10,26 @@ const adminRoutes = require('./routes/adminRoutes');
 
 app.use(
   cors({
-    origin: ["http://localhost:5173", "http://localhost:3000"], // React dev URLs
+    origin: "*",
     methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true, // Allow cookies/auth headers
+    credentials: true,
   })
 );
 
-// ✅ Parse incoming JSON
 app.use(express.json());
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log('MongoDB connected'))
   .catch((err) => console.log(err));
 
+  if (process.env.NODE_ENV !== "production") {
   setupSwagger(app);
+}
+
 
 app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/tasks', taskRoutes);
 app.use('/api/v1/admin', adminRoutes);
-// Error handler
+
 app.use(errorHandler);
 
 module.exports = app;

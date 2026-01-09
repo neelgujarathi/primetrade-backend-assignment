@@ -18,7 +18,7 @@ exports.protect = async (req, res, next) => {
 };
 
 
-// ✅ Verify token
+// Verify token
 exports.verifyToken = async (req, res, next) => {
   const authHeader = req.headers.authorization;
   if (!authHeader || !authHeader.startsWith("Bearer ")) {
@@ -35,7 +35,7 @@ exports.verifyToken = async (req, res, next) => {
   }
 };
 
-// ✅ Check Admin Role
+// Check Admin Role
 exports.isAdmin = (req, res, next) => {
   if (req.user.role !== "admin") {
     return res.status(403).json({ message: "Access denied, Admin only" });

@@ -22,7 +22,6 @@ function Navbar({ user, logout }) {
         fontFamily: "Poppins, sans-serif",
       }}
     >
-      {/* Logo / Brand */}
       <div
         className="fw-bold fs-5 text-primary"
         style={{ cursor: "pointer" }}
@@ -31,7 +30,6 @@ function Navbar({ user, logout }) {
         TaskManager
       </div>
 
-      {/* Menu Buttons */}
       <div className="d-flex gap-2">
         {!user ? (
           <>
@@ -84,32 +82,27 @@ export default function App() {
         position: "relative",
       }}
     >
-      {/* Navbar */}
       <Navbar user={user} logout={logout} />
-
-      {/* Page Content */}
       <div
         style={{
           minHeight: "100vh",
           width: "100%",
           overflowY: "auto",
-          paddingTop: "70px", // avoid navbar overlap
+          paddingTop: "70px",
           paddingLeft: "10px",
           paddingRight: "10px",
         }}
       >
         <Routes>
-          {/* Public Routes */}
+         
           {!user && <Route path="/login" element={<Login />} />}
           {!user && <Route path="/register" element={<Register />} />}
 
-          {/* Protected Routes */}
           {user && <Route path="/dashboard" element={<Dashboard />} />}
           {user && user.role === "admin" && (
             <Route path="/admin/user/:id" element={<AdminUserTasks />} />
           )}
 
-          {/* Default Redirection */}
           <Route path="*" element={user ? <Dashboard /> : <Login />} />
         </Routes>
       </div>

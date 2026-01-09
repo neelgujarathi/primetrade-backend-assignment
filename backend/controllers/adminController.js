@@ -2,23 +2,19 @@ const User = require("../models/User");
 const Task = require("../models/Task");
 const redisClient = require("../config/redis");
 
-// ✅ Get all registered users (with Redis caching)
 exports.getAllUsers = async (req, res) => {
   try {
-    // 1️⃣ Check Redis cache first
+    //  Check Redis cache first
     const cachedUsers = await redisClient.get("all_users");
     if (cachedUsers) {
-      console.log("📦 Returning users from Redis cache");
+      console.log(" Returning users from Redis cache");
       return res.status(200).json(JSON.parse(cachedUsers));
     }
+    const users = await User.find().select("-password"); 
 
-    // 2️⃣ If not cached, fetch from MongoDB
-    const users = await User.find().select("-password"); // exclude passwords
-
-    // 3️⃣ Store result in cache for 60 seconds
     await redisClient.setEx("all_users", 60, JSON.stringify(users));
 
-    console.log("💾 Users cached in Redis for 60 seconds");
+    console.log(" Users cached in Redis for 60 seconds");
     res.status(200).json(users);
   } catch (error) {
     console.error("Error fetching users:", error.message);
@@ -27,13 +23,13 @@ exports.getAllUsers = async (req, res) => {
 };
 
 
-// ✅ Delete a user
+// Delete a user
 exports.deleteUser = async (req, res) => {
   try {
     const user = await User.findById(req.params.id);
     if (!user) return res.status(404).json({ message: "User not found" });
 
-    await Task.deleteMany({ createdBy: user._id }); // delete user's tasks too
+    await Task.deleteMany({ createdBy: user._id }); 
     await user.deleteOne();
 
     res.status(200).json({ message: "User and related tasks deleted successfully" });
@@ -42,7 +38,7 @@ exports.deleteUser = async (req, res) => {
   }
 };
 
-// ✅ View all tasks (from all users)
+// View all tasks (from all users)
 exports.getAllTasks = async (req, res) => {
   try {
     const tasks = await Task.find().populate("createdBy", "name email role");
@@ -52,7 +48,7 @@ exports.getAllTasks = async (req, res) => {
   }
 };
 
-// ✅ Update any user’s task
+// Update any user’s task
 exports.updateAnyTask = async (req, res) => {
   try {
     const task = await Task.findByIdAndUpdate(req.params.id, req.body, { new: true });
@@ -63,7 +59,7 @@ exports.updateAnyTask = async (req, res) => {
   }
 };
 
-// ✅ Delete any user’s task
+// Delete any user’s task
 exports.deleteAnyTask = async (req, res) => {
   try {
     const task = await Task.findById(req.params.id);

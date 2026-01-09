@@ -31,19 +31,19 @@ router.get("/users", async (req, res) => {
 });
 
 
-// ✅ Admin can view all users
+// Admin can view all users
 router.get("/users", verifyToken, isAdmin, getAllUsers);
 
-// ✅ Admin can delete any user
+// Admin can delete any user
 router.delete("/users/:id", verifyToken, isAdmin, deleteUser);
 
-// ✅ Admin can view all tasks
+//Admin can view all tasks
 router.get("/tasks", verifyToken, isAdmin, getAllTasks);
 
-// ✅ Admin can update any user's task
+// Admin can update any user's task
 router.put("/tasks/:id", verifyToken, isAdmin, updateAnyTask);
 
-// ✅ Admin can delete any user's task
+//Admin can delete any user's task
 router.delete("/tasks/:id", verifyToken, isAdmin, deleteAnyTask);
 
 module.exports = router;

@@ -39,7 +39,7 @@ export default function Register() {
       const res = await API.post("/auth/register", form);
       localStorage.setItem("token", res.data.token);
       toast.success("Registered successfully!", { position: "top-right" });
-      setMessage("✅ Registered successfully!");
+      setMessage("Registered successfully!");
       setTimeout(() => {
         window.location.href = "/login";
       }, 1200);
