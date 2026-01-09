@@ -1,58 +1,45 @@
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
-const { setupSwagger } = require("./swagger");
 const cors = require('cors');
-const path = require('path'); // <-- add this
+const { setupSwagger } = require("./swagger");
 const authRoutes = require('./routes/authRoutes');
 const taskRoutes = require('./routes/taskRoutes');
-const { errorHandler } = require('./utils/errorHandler');
 const adminRoutes = require('./routes/adminRoutes');
+const { errorHandler } = require('./utils/errorHandler');
+const path = require("path"); // ✅ only here once
 
-// Enable CORS
 app.use(
   cors({
-    origin: "*", // can allow all for testing, or set your frontend URL
+    origin: "https://primetrade-backend-assignment-sjou.onrender.com",
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
 );
 
-// Body parser
 app.use(express.json());
 
-// MongoDB connection
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log('MongoDB connected'))
   .catch((err) => console.log(err));
 
-// Swagger (dev only)
 if (process.env.NODE_ENV !== "production") {
   setupSwagger(app);
 }
 
-// API routes
 app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/tasks', taskRoutes);
 app.use('/api/v1/admin', adminRoutes);
 
-// Serve frontend in production
-const path = require("path");
-
-const path = require("path");
-
+// ✅ Serve React frontend in production
 if (process.env.NODE_ENV === "production") {
-  // Serve static files from React frontend build
-  app.use(express.static(path.join(__dirname, "frontend/build")));
+  app.use(express.static(path.join(__dirname, "../frontend/build")));
 
-  // Catch-all route for frontend (except API routes)
   app.get(/^\/(?!api).*/, (req, res) => {
-    res.sendFile(path.join(__dirname, "frontend/build", "index.html"));
+    res.sendFile(path.join(__dirname, "../frontend/build", "index.html"));
   });
 }
 
-
-// Error handler
 app.use(errorHandler);
 
 module.exports = app;
