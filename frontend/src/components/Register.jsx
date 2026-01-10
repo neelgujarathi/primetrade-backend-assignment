@@ -3,7 +3,8 @@ import API from "../api/api";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useNavigate } from "react-router-dom"; // ✅ added
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";  // ✅ added
 
 export default function Register() {
   const [form, setForm] = useState({
@@ -115,9 +116,7 @@ export default function Register() {
           <p className="text-center mt-3">
             Already have an account?{" "}
             <span className="text-primary fw-semibold" style={{ cursor: "pointer" }}>
-              <a href="/login" style={{ textDecoration: "none" }}>
-                Log In
-              </a>
+              <Link to="/login" style={{ textDecoration: "none" }}>Log In</Link>
             </span>
           </p>
           <p className="text-center text-muted mt-2" id="regClock"></p>

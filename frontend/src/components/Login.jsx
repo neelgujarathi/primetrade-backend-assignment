@@ -4,7 +4,8 @@ import { useAuth } from "../context/AuthContext";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useNavigate } from "react-router-dom"; // ✅ added
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom"; // ✅ added
 
 export default function Login() {
   const [form, setForm] = useState({ email: "", password: "" });
@@ -72,9 +73,7 @@ export default function Login() {
                 className="text-primary fw-semibold"
                 style={{ cursor: "pointer" }}
               >
-                <a href="/register" style={{ textDecoration: "none" }}>
-                  Create a Account
-                </a>
+                <Link to="/register" style={{ textDecoration: "none" }}>Create Account</Link>
               </span>
             </p>
           </form>

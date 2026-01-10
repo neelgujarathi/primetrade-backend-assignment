@@ -1,28 +1,28 @@
 const User = require("../models/User");
 const Task = require("../models/Task");
-const redisClient = require("../config/redis");
+//const redisClient = require("../config/redis");
 
 exports.getAllUsers = async (req, res) => {
   try {
     let users = null;
 
     // Only use Redis if client exists
-    if (redisClient) {
-      const cachedUsers = await redisClient.get("all_users");
-      if (cachedUsers) {
-        console.log("Returning users from Redis cache");
-        return res.status(200).json(JSON.parse(cachedUsers));
-      }
-    }
+    // if (redisClient) {
+    //   const cachedUsers = await redisClient.get("all_users");
+    //   if (cachedUsers) {
+    //     console.log("Returning users from Redis cache");
+    //     return res.status(200).json(JSON.parse(cachedUsers));
+    //   }
+    // }
 
     // Fetch from database
     users = await User.find().select("-password");
 
     // Cache in Redis if client exists
-    if (redisClient) {
-      await redisClient.setEx("all_users", 60, JSON.stringify(users));
-      console.log("Users cached in Redis for 60 seconds");
-    }
+    // if (redisClient) {
+    //   await redisClient.setEx("all_users", 60, JSON.stringify(users));
+    //   console.log("Users cached in Redis for 60 seconds");
+    // }
 
     res.status(200).json(users);
   } catch (error) {
@@ -40,11 +40,11 @@ exports.deleteUser = async (req, res) => {
     await Task.deleteMany({ createdBy: user._id }); 
     await user.deleteOne();
 
-    // Optional: clear cached users if Redis exists
-    if (redisClient) {
-      await redisClient.del("all_users");
-      console.log("Redis cache cleared for all_users");
-    }
+    // // Optional: clear cached users if Redis exists
+    // if (redisClient) {
+    //   await redisClient.del("all_users");
+    //   console.log("Redis cache cleared for all_users");
+    // }
 
     res.status(200).json({ message: "User and related tasks deleted successfully" });
   } catch (error) {
