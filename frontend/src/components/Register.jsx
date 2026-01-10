@@ -3,6 +3,7 @@ import API from "../api/api";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom"; // ✅ added
 
 export default function Register() {
   const [form, setForm] = useState({
@@ -12,6 +13,7 @@ export default function Register() {
     role: "user",
   });
   const [message, setMessage] = useState("");
+  const navigate = useNavigate(); // ✅ added
 
   const handleChange = (e) =>
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -31,7 +33,9 @@ export default function Register() {
       return;
     }
     if (!isValidPassword(form.password)) {
-      toast.error("Password must be at least 6 characters!", { position: "top-right" });
+      toast.error("Password must be at least 6 characters!", {
+        position: "top-right",
+      });
       return;
     }
 
@@ -41,7 +45,7 @@ export default function Register() {
       toast.success("Registered successfully!", { position: "top-right" });
       setMessage("Registered successfully!");
       setTimeout(() => {
-        window.location.href = "/login";
+        navigate("/login"); // ✅ updated
       }, 1200);
     } catch (err) {
       const errMsg = err.response?.data?.message || "Registration failed!";
@@ -52,7 +56,10 @@ export default function Register() {
 
   return (
     <div className="d-flex align-items-center justify-content-center min-vh-100 bg-light">
-      <div className="card shadow p-4" style={{ width: "420px", borderRadius: "12px", marginTop: "-70px" }}>
+      <div
+        className="card shadow p-4"
+        style={{ width: "420px", borderRadius: "12px", marginTop: "-70px" }}
+      >
         <div className="card-body">
           <h3 className="text-center mb-4 fw-bold text-dark">Create Account</h3>
           <form onSubmit={handleSubmit}>
@@ -89,11 +96,7 @@ export default function Register() {
             </div>
             <div className="mb-3">
               <label className="form-label fw-semibold">Role</label>
-              <select
-                name="role"
-                onChange={handleChange}
-                className="form-select"
-              >
+              <select name="role" onChange={handleChange} className="form-select">
                 <option value="user">User</option>
                 <option value="admin">Admin</option>
               </select>
@@ -112,7 +115,9 @@ export default function Register() {
           <p className="text-center mt-3">
             Already have an account?{" "}
             <span className="text-primary fw-semibold" style={{ cursor: "pointer" }}>
-              <a href="/login" style={{textDecoration: "none"}}>Log In</a>
+              <a href="/login" style={{ textDecoration: "none" }}>
+                Log In
+              </a>
             </span>
           </p>
           <p className="text-center text-muted mt-2" id="regClock"></p>

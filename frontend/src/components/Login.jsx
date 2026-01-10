@@ -4,10 +4,12 @@ import { useAuth } from "../context/AuthContext";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom"; // ✅ added
 
 export default function Login() {
   const [form, setForm] = useState({ email: "", password: "" });
   const { login } = useAuth();
+  const navigate = useNavigate(); // ✅ added
 
   const handleChange = (e) =>
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -19,7 +21,7 @@ export default function Login() {
       login(res.data);
       toast.success("Login successful!", { position: "top-right" });
       setTimeout(() => {
-        window.location.href = "/dashboard";
+        navigate("/dashboard"); // ✅ updated
       }, 1200);
     } catch (err) {
       toast.error(err.response?.data?.message || "Login failed!", {
@@ -30,7 +32,10 @@ export default function Login() {
 
   return (
     <div className="d-flex align-items-center justify-content-center min-vh-100 bg-light">
-      <div className="card shadow p-4" style={{ width: "380px", borderRadius: "12px", marginTop: "-160px" }}>
+      <div
+        className="card shadow p-4"
+        style={{ width: "380px", borderRadius: "12px", marginTop: "-160px" }}
+      >
         <div className="card-body">
           <h3 className="text-center mb-4 fw-bold text-dark">Welcome Back</h3>
           <form onSubmit={handleSubmit}>
@@ -62,11 +67,16 @@ export default function Login() {
               Log In
             </button>
             <p className="text-center mt-3">
-            Don't have a account?{" "}
-            <span className="text-primary fw-semibold" style={{ cursor: "pointer" }}>
-              <a href="/register" style={{textDecoration: "none"}}>Create a Account</a>
-            </span>
-          </p>
+              Don't have a account?{" "}
+              <span
+                className="text-primary fw-semibold"
+                style={{ cursor: "pointer" }}
+              >
+                <a href="/register" style={{ textDecoration: "none" }}>
+                  Create a Account
+                </a>
+              </span>
+            </p>
           </form>
         </div>
       </div>
