@@ -8,6 +8,8 @@ if (process.env.NODE_ENV !== "production") {
 
   client.on("error", (err) => console.error("Redis Client Error", err));
   client.connect();
+} else {
+  console.log("Redis is disabled in production.");
 }
 
 module.exports = client;
