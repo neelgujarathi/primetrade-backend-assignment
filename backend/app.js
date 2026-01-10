@@ -11,7 +11,7 @@ const path = require("path"); // ✅ Only one place in entire backend
 
 app.use(
   cors({
-    origin: "https://primetrade-backend-assignment-sjou.onrender.com",
+    origin: "*",
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
