@@ -11,11 +11,12 @@ const path = require("path"); // ✅ Only one place in entire backend
 
 app.use(
   cors({
-    origin: "https://primetrade-backend-assignment-sjou.onrender.com", // ✅ your frontend URL
+    origin: "https://primetrade-backend-assignment-sjou.onrender.com",
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
 );
+
 
 
 app.use(express.json());
@@ -32,15 +33,19 @@ if (process.env.NODE_ENV !== "production") {
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/tasks", taskRoutes);
 app.use("/api/v1/admin", adminRoutes);
-
-// Serve frontend in production
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "../frontend/build")));
-  app.get(/^\/(?!api).*/, (req, res) => {
-    res.sendFile(path.join(__dirname, "../frontend/build", "index.html"));
-  });
-}
-
 app.use(errorHandler);
+
+// // Serve frontend in production
+// if (process.env.NODE_ENV === "production") {
+//   app.use(express.static(path.join(__dirname, "../frontend/build")));
+//   app.get(/^\/(?!api).*/, (req, res) => {
+//     res.sendFile(path.join(__dirname, "../frontend/build", "index.html"));
+//   });
+// }
+
+// In production, backend only handles API requests
+app.get("/", (req, res) => {
+  res.send("Backend is running successfully!");
+});
 
 module.exports = app;
