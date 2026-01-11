@@ -1,54 +1,48 @@
-# 🚀 Backend Developer Internship Assignment
+# Backend Developer (Intern) – Assignment
 
-This project is built as part of the **Backend Developer Intern assignment** for **Bajarangs / PrimeTrade.ai**.
+## 🔧 Tech Stack
+- Node.js, Express.js
+- MongoDB (Mongoose)
+- JWT Authentication
+- React.js (frontend)
+- Redis (optional caching)
+- Swagger / Postman for API docs
 
-## 🧠 Overview
-A secure and scalable **MERN-based system** implementing:
-- JWT Authentication & Role-based access (User / Admin)
-- CRUD APIs for tasks
-- Swagger API Documentation
-- Redis caching for performance
-- Basic React frontend for demonstration
+## 🚀 Setup Instructions
+1. Clone the repo
+2. Navigate to backend folder:
+   cd backend
+   npm install
+   npm run dev
+3. Setup your .env file:
+   MONGO_URI=
+   JWT_SECRET=
+   PORT=5000
+4. Navigate to frontend folder:
+   cd ../frontend
+   npm install
+   npm run dev
 
----
+## 📘 Features
+✅ User registration & login (JWT-based)  
+✅ Role-based access (Admin/User)  
+✅ CRUD APIs for Tasks  
+✅ Swagger & Postman API documentation  
+✅ Responsive React frontend  
+✅ Secure password hashing (bcrypt)  
+✅ Error handling and validation  
+✅ Scalable folder structure  
 
-## ⚙️ Tech Stack
-**Backend:** Node.js, Express.js, MongoDB, Mongoose  
-**Auth:** JWT, bcrypt  
-**Frontend:** React.js (Vite), Bootstrap  
-**Caching:** Redis  
-**Docs:** Swagger UI  
+## 🧠 Scalability Note
+The app can be scaled via:
+- Microservices architecture for independent modules
+- Redis caching for heavy endpoints
+- Docker containerization for deployment
+- Load balancing via Nginx or Kubernetes
 
----
+## 🧪 API Documentation
+Swagger: `/api-docs`  
+Postman Collection: `postman_collection.json`
 
-## 📁 Folder Structure
-backend/
-├── config/
-├── controllers/
-├── models/
-├── routes/
-├── utils/
-├── swagger.js
-├── app.js
-└── server.js
-
-frontend/
-├── src/
-├── components/
-├── context/
-└── api/## 🧩 Features
-✅ User registration & login (JWT)  
-✅ Admin & User role-based dashboards  
-✅ CRUD operations for Tasks  
-✅ Swagger API documentation (`/api-docs`)  
-✅ Redis caching for faster performance  
-
----
-
-## 🧪 How to Run Locally
-
-### 1️⃣ Backend
-```bash
-cd backend
-npm install
-npm run dev
+## 👨‍💻 Author
+Neel Gujarathi

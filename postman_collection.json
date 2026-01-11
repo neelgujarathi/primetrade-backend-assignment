@@ -1,0 +1,293 @@
+{
+	"info": {
+		"_postman_id": "20aca511-81fa-4131-9979-e3cedd277b51",
+		"name": "PrimeTrade Collection - Neel Gujarathi",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "51406032",
+		"_collection_link": "https://neelgujarathi66-2386043.postman.co/workspace/Backend-Developer-Intern-Assign~4d146727-44bb-4f83-a76e-27f3d649f91a/collection/51406032-20aca511-81fa-4131-9979-e3cedd277b51?action=share&source=collection_link&creator=51406032"
+	},
+	"item": [
+		{
+			"name": "Register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\" : \"rucha singh\",\r\n    \"email\" : \"r11@gmail.com\",\r\n    \"password\" : \"098765\",\r\n    \"role\":\"user\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/v1/auth/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"r11@gmail.com\",\r\n    \"password\": \"098765\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/v1/auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Tasks",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5NjM0ODI2NzczMzM1ZGY3ZGQ1NTMzOSIsImlhdCI6MTc2ODExNDI4NywiZXhwIjoxNzY4MjAwNjg3fQ.EjHN2-6NhSMHahjI7BZvDEL5koS4mcCgDiK1BqWir-8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"title\": \"Go to Gym\",\r\n  \"description\": \"At 8 am\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/v1/tasks",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"v1",
+						"tasks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Task",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5NjM0ODI2NzczMzM1ZGY3ZGQ1NTMzOSIsImlhdCI6MTc2ODExNDI4NywiZXhwIjoxNzY4MjAwNjg3fQ.EjHN2-6NhSMHahjI7BZvDEL5koS4mcCgDiK1BqWir-8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Come from college\",\r\n    \"description\":\"At 3 pm.\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/v1/tasks",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"v1",
+						"tasks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Task",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5NjM0ODI2NzczMzM1ZGY3ZGQ1NTMzOSIsImlhdCI6MTc2ODExNDI4NywiZXhwIjoxNzY4MjAwNjg3fQ.EjHN2-6NhSMHahjI7BZvDEL5koS4mcCgDiK1BqWir-8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\" : \"Go To Gym\",\r\n    \"description\" : \"at 2 pm\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/v1/tasks/69634968773335df7dd55343",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"v1",
+						"tasks",
+						"69634968773335df7dd55343"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Task",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5NjM0ODI2NzczMzM1ZGY3ZGQ1NTMzOSIsImlhdCI6MTc2ODExNDI4NywiZXhwIjoxNzY4MjAwNjg3fQ.EjHN2-6NhSMHahjI7BZvDEL5koS4mcCgDiK1BqWir-8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/v1/tasks/69634968773335df7dd55343",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"v1",
+						"tasks",
+						"69634968773335df7dd55343"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Users (Admin)",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5NjBiODJiYjFkMDY3MWI4YmNmMzViMiIsImlhdCI6MTc2ODExNDkzMCwiZXhwIjoxNzY4MjAxMzMwfQ.0THjWNpqYCvSc9Vs-z-xXHG5MipimfE6MboYkhvywfQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/v1/admin/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"v1",
+						"admin",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Tasks (Admin)",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5NjBiODJiYjFkMDY3MWI4YmNmMzViMiIsImlhdCI6MTc2ODExNDkzMCwiZXhwIjoxNzY4MjAxMzMwfQ.0THjWNpqYCvSc9Vs-z-xXHG5MipimfE6MboYkhvywfQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/v1/admin/tasks",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"v1",
+						"admin",
+						"tasks"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
