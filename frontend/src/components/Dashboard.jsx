@@ -244,12 +244,12 @@ export default function Dashboard() {
               : "User Dashboard"}
           </h2>
 
-          <button
+          {/* <button
             className="btn btn-danger btn-sm"
             onClick={logout}
           >
             Logout
-          </button>
+          </button> */}
         </div>
 
         {user?.role === "admin" ? (
